@@ -1,15 +1,19 @@
 package tech.buildrun.frete_flex.service;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import tech.buildrun.frete_flex.domain.ShippingCalculator;
 
 
 @Service
 public class ShippingService {
-    private final ShippingCalculator shippingCalculator;
+    private final ShippingCalculator standardCalculator;
+    private final ShippingCalculator expressCalculator;
 
-    public ShippingService(ShippingCalculator shippingCalculator) {
-        this.shippingCalculator = shippingCalculator;
+    public ShippingService(@Qualifier("standardShippingCalculator") ShippingCalculator standardCalculator,
+                           @Qualifier("expressShippingCalculator") ShippingCalculator expressCalculator) {
+        this.standardCalculator = standardCalculator;
+        this.expressCalculator = expressCalculator;
 
     }
 
@@ -19,10 +23,10 @@ public class ShippingService {
                             Double weight){
 
         if (shippingType.equalsIgnoreCase("standard")) {
-            return shippingCalculator.calculate(distance, weight);
+            return standardCalculator.calculate(distance, weight);
 
         }else if (shippingType.equalsIgnoreCase("express")) {
-            return shippingCalculator.calculate(distance, weight);
+            return expressCalculator.calculate(distance, weight);
         }
 
         return null;

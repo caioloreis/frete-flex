@@ -3,8 +3,8 @@ package tech.buildrun.frete_flex.domain;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
-@Primary
-@Component
+
+@Component(value = "expressShippingCalculator")
 public class ExpressShippingCalculator implements ShippingCalculator {
 
     @Override

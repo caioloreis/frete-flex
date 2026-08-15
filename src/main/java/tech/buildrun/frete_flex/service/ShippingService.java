@@ -1,18 +1,16 @@
 package tech.buildrun.frete_flex.service;
 
 import org.springframework.stereotype.Service;
-import tech.buildrun.frete_flex.domain.ExpressShippingCalculate;
-import tech.buildrun.frete_flex.domain.StandardShippingCalculate;
+import tech.buildrun.frete_flex.domain.ShippingCalculator;
+
 
 @Service
 public class ShippingService {
-    private final StandardShippingCalculate standardShippingCalculate;
-    private final ExpressShippingCalculate expressShippingCalculate;
+    private final ShippingCalculator shippingCalculator;
 
-    public ShippingService(StandardShippingCalculate standardShippingCalculate,
-                            ExpressShippingCalculate expressShippingCalculate1) {
-        this.standardShippingCalculate = standardShippingCalculate;
-        this.expressShippingCalculate = expressShippingCalculate1;
+    public ShippingService(ShippingCalculator shippingCalculator) {
+        this.shippingCalculator = shippingCalculator;
+
     }
 
 
@@ -21,10 +19,10 @@ public class ShippingService {
                             Double weight){
 
         if (shippingType.equalsIgnoreCase("standard")) {
-            return standardShippingCalculate.calculate(distance, weight);
+            return shippingCalculator.calculate(distance, weight);
 
         }else if (shippingType.equalsIgnoreCase("express")) {
-            return expressShippingCalculate.calculate(distance, weight);
+            return shippingCalculator.calculate(distance, weight);
         }
 
         return null;

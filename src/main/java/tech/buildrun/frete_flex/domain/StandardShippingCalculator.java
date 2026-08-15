@@ -1,9 +1,10 @@
 package tech.buildrun.frete_flex.domain;
 
+
 import org.springframework.stereotype.Component;
 
 @Component
-public class StandardShippingCalculate implements ShippingCalculate {
+public class StandardShippingCalculator implements ShippingCalculator {
 
     @Override
     public Double calculate(Double distance, Double weight) {

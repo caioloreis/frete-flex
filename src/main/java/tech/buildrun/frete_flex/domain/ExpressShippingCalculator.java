@@ -1,9 +1,11 @@
 package tech.buildrun.frete_flex.domain;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
+@Primary
 @Component
-public class ExpressShippingCalculate implements ShippingCalculate {
+public class ExpressShippingCalculator implements ShippingCalculator {
 
     @Override
     public Double calculate(Double distance, Double weight) {
